@@ -1,7 +1,6 @@
 package co.catware.live;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -74,7 +73,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 
 	private void restartTimer(long timestamp) {
 		stopTimer();
-		streamMeta = new IcyStreamMeta("http://stream.psyradio.com.ua:8000/256kbps");
+		streamMeta = new IcyStreamMeta(LiveShowState.getLiveShowUrl());
 		timer = new Timer();
 		timer.schedule(createTimerTask(timestamp), 0, 1000);
 	}
@@ -91,7 +90,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 					public void run() {
 						try {
 							streamMeta.refreshMeta();
-							activity.setStreamingTitle(streamMeta.getArtist() + " - " + streamMeta.getTitle());
+							activity.setStreamingTitle(streamMeta.getFullTitle());
 						} catch (IOException e) {
 							
 						}

@@ -27,6 +27,22 @@ public class IcyStreamMeta {
  
 		isError = false;
 	}
+	
+	/**
+	 * Get full title using stream's title
+	 *
+	 * @return String
+	 * @throws IOException
+	 */
+	public String getFullTitle() throws IOException {
+		Map<String, String> data = getMetadata();
+ 
+		if (!data.containsKey("StreamTitle"))
+			return "";
+ 
+		String streamTitle = data.get("StreamTitle");
+		return streamTitle.trim();
+	}
  
 	/**
 	 * Get artist using stream's title

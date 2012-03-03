@@ -11,6 +11,10 @@ public class LiveShowState {
 	public static void setLiveShowUrl(String value) {
 		liveShowUrl = value;
 	}
+	
+	public static String getLiveShowUrl() {
+		return liveShowUrl;
+	}
 
 	public static void setWaitTimeoutSeconds(int value) {
 		waitTimeout = value * 1000;
