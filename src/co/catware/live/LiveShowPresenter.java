@@ -1,5 +1,7 @@
 package co.catware.live;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,6 +12,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 
 	private PsyRadioActivity activity;
 	private Timer timer;
+	private IcyStreamMeta streamMeta;
 	private boolean isActive;
 
 	public LiveShowPresenter(PsyRadioActivity activity) {
@@ -41,7 +44,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 			timer.cancel();
 			timer = null;
 		}
-		activity.setElapsedTime(0);
+		activity.setStreamingTitle("");
 	}
 
 	public void switchPlaybackState(LiveShowState state) {
@@ -71,6 +74,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 
 	private void restartTimer(long timestamp) {
 		stopTimer();
+		streamMeta = new IcyStreamMeta("http://stream.psyradio.com.ua:8000/256kbps");
 		timer = new Timer();
 		timer.schedule(createTimerTask(timestamp), 0, 1000);
 	}
@@ -85,7 +89,12 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 			private void updateTimerLabel(final long seconds) {
 				activity.runOnUiThread(new Runnable() {
 					public void run() {
-						activity.setElapsedTime(seconds);
+						try {
+							streamMeta.refreshMeta();
+							activity.setStreamingTitle(streamMeta.getArtist() + " - " + streamMeta.getTitle());
+						} catch (IOException e) {
+							
+						}
 					}
 				});
 			}

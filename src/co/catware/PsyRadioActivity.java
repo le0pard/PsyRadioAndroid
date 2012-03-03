@@ -11,7 +11,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -92,9 +91,9 @@ public class PsyRadioActivity extends Activity {
 		view.setText(statusLabels[labelId]);
 	}
 
-	public void setElapsedTime(long seconds) {
-		TextView timerLabel = (TextView) findViewById(R.id.live_timer_label);
-		timerLabel.setText(DateUtils.formatElapsedTime(seconds));
+	public void setStreamingTitle(String text) {
+		TextView timerLabel = (TextView) findViewById(R.id.live_title_label);
+		timerLabel.setText(text);
 	}
 
 	public void showHelpText(boolean visible) {
