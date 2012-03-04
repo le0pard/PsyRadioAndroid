@@ -52,6 +52,8 @@ public class LiveShowState {
 		void onPlaying(Playing playing);
 
 		void onStopping(Stopping stopping);
+		
+		void onUpdateSoundTitle(String title);
 	}
 
 	public LiveShowState(MediaPlayer player, ILiveShowService service) {
@@ -179,6 +181,7 @@ public class LiveShowState {
 		public void acceptVisitor(ILiveShowVisitor visitor) {
 			visitor.onPlaying(this);
 		}
+		
 	}
 
 	public static class Idle extends LiveShowState {

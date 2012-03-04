@@ -1,6 +1,8 @@
 package co.catware.live;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import co.catware.R;
 import co.catware.RadiotApplication;
@@ -21,7 +23,9 @@ import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
@@ -40,6 +44,8 @@ public class LiveShowService extends Service implements ILiveShowService {
 	private LiveShowState currentState;
 	private String[] statusLabels;
 	private static Boolean isListening = false;
+	private Timer timer;
+	private IcyStreamMeta streamMeta = null;
 	private Foregrounder foregrounder;
 	private BroadcastReceiver onAlarm = new BroadcastReceiver() {
 		@Override
@@ -113,6 +119,7 @@ public class LiveShowService extends Service implements ILiveShowService {
 		if(mgr != null) {
 		    mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
 		}
+		stopTimer();
 		super.onDestroy();
 	}
 	
@@ -126,6 +133,58 @@ public class LiveShowService extends Service implements ILiveShowService {
 
 	public void acceptVisitor(LiveShowState.ILiveShowVisitor visitor) {
 		currentState.acceptVisitor(visitor);
+	}
+	
+	public void stopTimer() {
+		streamMeta = null;
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
+		//activity.setStreamingTitle("");
+	}
+	
+	private void restartTimer() {
+		stopTimer();
+		streamMeta = new IcyStreamMeta(LiveShowState.getLiveShowUrl());
+		timer = new Timer();
+		timer.schedule(createTimerTask(), 0, 3000);
+	}
+
+	private TimerTask createTimerTask() {
+		return new TimerTask() {
+		
+			final Handler myTimerHandler = new Handler(){
+				@Override
+				public void handleMessage(Message msg) {
+					if (streamMeta != null && timer != null && msg.obj != null){
+						foregrounder.startForeground(NOTIFICATION_ID, createNotification((String) msg.obj));
+					}
+				}
+			};
+
+			public void run() {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						Message msg = myTimerHandler.obtainMessage();
+						try {
+							if (streamMeta != null && timer != null){
+								streamMeta.refreshMeta();
+							}
+							if (streamMeta != null && timer != null){
+								msg.obj = streamMeta.getFullTitle();
+							}
+						} catch (NullPointerException e){
+							msg.obj = statusLabels[0];
+						} catch (IOException e) {
+							msg.obj = statusLabels[0];
+						}
+						myTimerHandler.sendMessage(msg);
+					}
+				}).start();
+			}
+		};
 	}
 
 	public void startPlayback() {
@@ -150,20 +209,17 @@ public class LiveShowService extends Service implements ILiveShowService {
 	public void goForeground(int statusLabelIndex) {
 		switch (statusLabelIndex){
 		case 0:
-			IcyStreamMeta streamMeta = new IcyStreamMeta(LiveShowState.getLiveShowUrl());
-			try {
-				streamMeta.refreshMeta();
-				foregrounder.startForeground(NOTIFICATION_ID, createNotification(streamMeta.getFullTitle()));
-			} catch (IOException e) {
-				foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
-			}
+			foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
+			restartTimer();
 			break;
 		default:
 			foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
+			stopTimer();
 		}
 	}
 
 	public void goBackground() {
+		stopTimer();
 		foregrounder.stopForeground();
 	}
 

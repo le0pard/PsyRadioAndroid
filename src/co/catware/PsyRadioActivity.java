@@ -63,7 +63,6 @@ public class PsyRadioActivity extends Activity {
 		unregisterReceiver(onPlaybackState);
 		unbindService(onService);
 		service = null;
-		visitor.stopTimer();
 		super.onStop();
 	}
 

@@ -1,17 +1,12 @@
 package co.catware.live;
 
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-
+import android.util.Log;
 import co.catware.PsyRadioActivity;
 import co.catware.live.LiveShowState.*;
 
 public class LiveShowPresenter implements ILiveShowVisitor {
 
 	private PsyRadioActivity activity;
-	private Timer timer;
-	private IcyStreamMeta streamMeta;
 	private boolean isActive;
 
 	public LiveShowPresenter(PsyRadioActivity activity) {
@@ -38,15 +33,6 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 		beActiveState(state, 4, false, false);
 	}
 
-	public void stopTimer() {
-		if (timer != null) {
-			timer.cancel();
-			timer = null;
-		}
-		streamMeta = null;
-		activity.setStreamingTitle("");
-	}
-
 	public void switchPlaybackState(LiveShowState state) {
 		if (isActive) {
 			state.stopPlayback();
@@ -61,7 +47,6 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 		activity.setStatusLabel(labelStringId);
 		activity.showHelpText(isHelpTextVisible);
 		activity.setButtonState(0, buttonEnabled);
-		restartTimer(state.getTimestamp());
 	}
 
 	private void beInactiveState() {
@@ -69,38 +54,12 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 		activity.setStatusLabel(0);
 		activity.showHelpText(false);
 		activity.setButtonState(1, true);
-		stopTimer();
 	}
 
-	private void restartTimer(long timestamp) {
-		stopTimer();
-		streamMeta = new IcyStreamMeta(LiveShowState.getLiveShowUrl());
-		timer = new Timer();
-		timer.schedule(createTimerTask(timestamp), 0, 2000);
+	@Override
+	public void onUpdateSoundTitle(String title) {
+		Log.i("title", title);
 	}
 
-	private TimerTask createTimerTask(final long timestamp) {
-		return new TimerTask() {
-			public void run() {
-				long currentTime = System.currentTimeMillis() - timestamp;
-				updateTimerLabel(currentTime / 1000);
-			}
-
-			private void updateTimerLabel(final long seconds) {
-				activity.runOnUiThread(new Runnable() {
-					public void run() {
-						try {
-							if (streamMeta != null){
-								streamMeta.refreshMeta();
-								activity.setStreamingTitle(streamMeta.getFullTitle());
-							}
-						} catch (IOException e) {
-							activity.setStreamingTitle("");
-						}
-					}
-				});
-			}
-		};
-	}
 }
 
