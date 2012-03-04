@@ -3,24 +3,24 @@
     <string name="hello">Hello World, PsyRadioActivity!</string>
     <string name="app_name">PsyRadio</string>
     
-    <string name="live_show_waiting_hint">При подключении к прямому эфиру произошла ошибка. Приложение повторит попытку через некоторое время</string>
+    <string name="live_show_waiting_hint">Connection error. Check Internet connection.</string>
     <string-array
 	    name="live_show_notification_labels">
-	    <item>Прямой эфир: Идет трансляция</item>
-	    <item>Прямой эфир: Подключение</item>
-	    <item>Прямой эфир: Ожидание</item>
+	    <item>Broadcasting</item>
+	    <item>Connection</item>
+	    <item>Waiting</item>
 	  </string-array>
 	  <string-array
 	    name="live_show_status_labels">
-	    <item>Остановлено</item>
-	    <item>Подключение</item>
-	    <item>Ожидание</item>
-	    <item>Трансляция</item>
-	    <item>Остановка</item>
+	    <item>Stopped</item>
+	    <item>Connecting</item>
+	    <item>Waiting</item>
+	    <item>Broadcasting</item>
+	    <item>Stopping</item>
 	  </string-array>
 	  <string-array
 	    name="live_show_button_labels">
-	    <item>Остановить</item>
-	    <item>Подключиться</item>
+	    <item>Stop</item>
+	    <item>Play</item>
 	  </string-array>
 </resources>
