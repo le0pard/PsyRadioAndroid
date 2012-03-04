@@ -76,7 +76,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 		stopTimer();
 		streamMeta = new IcyStreamMeta(LiveShowState.getLiveShowUrl());
 		timer = new Timer();
-		timer.schedule(createTimerTask(timestamp), 0, 1000);
+		timer.schedule(createTimerTask(timestamp), 0, 2000);
 	}
 
 	private TimerTask createTimerTask(final long timestamp) {

@@ -22,7 +22,6 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 public class LiveShowService extends Service implements ILiveShowService {
 	public class LocalBinder extends Binder {
@@ -49,8 +48,6 @@ public class LiveShowService extends Service implements ILiveShowService {
 	PhoneStateListener phoneStateListener = new PhoneStateListener() {
 	    @Override
 	    public void onCallStateChanged(int state, String incomingNumber) {
-        	Log.i("onCallStateChanged", String.valueOf(state));
-        	Log.i("onCallStateChanged", String.valueOf(isListening));
 	        if (state == TelephonyManager.CALL_STATE_RINGING) {
 	            //Incoming call: Pause music
 	        	if (currentState instanceof Playing) {
