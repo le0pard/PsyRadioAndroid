@@ -1,5 +1,7 @@
 package co.catware.live;
 
+import java.io.IOException;
+
 import co.catware.R;
 import co.catware.RadiotApplication;
 import co.catware.PsyRadioActivity;
@@ -146,7 +148,19 @@ public class LiveShowService extends Service implements ILiveShowService {
 	}
 
 	public void goForeground(int statusLabelIndex) {
-		foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
+		switch (statusLabelIndex){
+		case 0:
+			IcyStreamMeta streamMeta = new IcyStreamMeta(LiveShowState.getLiveShowUrl());
+			try {
+				streamMeta.refreshMeta();
+				foregrounder.startForeground(NOTIFICATION_ID, createNotification(streamMeta.getFullTitle()));
+			} catch (IOException e) {
+				foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
+			}
+			break;
+		default:
+			foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
+		}
 	}
 
 	public void goBackground() {
