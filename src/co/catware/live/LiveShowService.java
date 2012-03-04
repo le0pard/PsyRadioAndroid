@@ -46,6 +46,7 @@ public class LiveShowService extends Service implements ILiveShowService {
 	private static Boolean isListening = false;
 	private Timer timer;
 	private IcyStreamMeta streamMeta = null;
+	public String streamMetaTitle = null;
 	private Foregrounder foregrounder;
 	private BroadcastReceiver onAlarm = new BroadcastReceiver() {
 		@Override
@@ -141,7 +142,7 @@ public class LiveShowService extends Service implements ILiveShowService {
 			timer.cancel();
 			timer = null;
 		}
-		//activity.setStreamingTitle("");
+		streamMetaTitle = null;
 	}
 	
 	private void restartTimer() {
@@ -159,6 +160,7 @@ public class LiveShowService extends Service implements ILiveShowService {
 				public void handleMessage(Message msg) {
 					if (streamMeta != null && timer != null && msg.obj != null){
 						foregrounder.startForeground(NOTIFICATION_ID, createNotification((String) msg.obj));
+						sendBroadcast(new Intent(LiveShowService.PLAYBACK_STATE_CHANGED));
 					}
 				}
 			};
@@ -172,8 +174,10 @@ public class LiveShowService extends Service implements ILiveShowService {
 							if (streamMeta != null && timer != null){
 								streamMeta.refreshMeta();
 							}
-							if (streamMeta != null && timer != null){
-								msg.obj = streamMeta.getFullTitle();
+							if (streamMeta != null && timer != null && 
+									(streamMetaTitle == null || (streamMetaTitle != null && streamMetaTitle.compareToIgnoreCase(streamMeta.getFullTitle()) != 0))){
+								streamMetaTitle = streamMeta.getFullTitle();
+								msg.obj = streamMetaTitle;
 							}
 						} catch (NullPointerException e){
 							msg.obj = statusLabels[0];

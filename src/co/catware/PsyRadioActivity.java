@@ -71,8 +71,14 @@ public class PsyRadioActivity extends Activity {
 	}
 
 	protected void updateVisualState() {
-		if (service != null)
+		if (service != null){
 			service.acceptVisitor(visitor);
+			if (service.streamMetaTitle != null){
+				setStreamingTitle(service.streamMetaTitle);
+			} else {
+				setStreamingTitle("");
+			}
+		}
 	}
 
 	public LiveShowService getService() {
