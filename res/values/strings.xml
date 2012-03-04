@@ -3,7 +3,7 @@
     <string name="hello">Hello World, PsyRadioActivity!</string>
     <string name="app_name">PsyRadio</string>
     
-    <string name="live_show_waiting_hint">При подключении к прямому эфиру произошла ошибка. ПриложеAние повторит попытку через некоторое время</string>
+    <string name="live_show_waiting_hint">При подключении к прямому эфиру произошла ошибка. Приложение повторит попытку через некоторое время</string>
     <string-array
 	    name="live_show_notification_labels">
 	    <item>Прямой эфир: Идет трансляция</item>

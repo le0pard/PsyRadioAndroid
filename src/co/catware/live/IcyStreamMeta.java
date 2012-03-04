@@ -18,14 +18,12 @@ public class IcyStreamMeta {
 	private boolean isError;
  
 	public IcyStreamMeta(String streamUrl) {
+		isError = false;
 		try {
 			setStreamUrl(new URL(streamUrl));
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			isError = true;
 		}
- 
-		isError = false;
 	}
 	
 	/**
