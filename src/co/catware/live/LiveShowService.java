@@ -149,14 +149,13 @@ public class LiveShowService extends Service implements ILiveShowService {
 	}
 
 	public void goForeground(int statusLabelIndex) {
-		foregrounder.startForeground(NOTIFICATION_ID,
-				createNotification(statusLabels[statusLabelIndex]));
+		foregrounder.startForeground(NOTIFICATION_ID, createNotification(statusLabels[statusLabelIndex]));
 	}
 
 	public void goBackground() {
 		foregrounder.stopForeground();
 	}
-	
+
 	private Notification createNotification(String statusMessage) {
 		Notification note = new Notification(R.drawable.ic_notification_live,
 				null, System.currentTimeMillis());

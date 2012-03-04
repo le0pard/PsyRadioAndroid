@@ -43,6 +43,7 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 			timer.cancel();
 			timer = null;
 		}
+		streamMeta = null;
 		activity.setStreamingTitle("");
 	}
 
@@ -89,10 +90,12 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 				activity.runOnUiThread(new Runnable() {
 					public void run() {
 						try {
-							streamMeta.refreshMeta();
-							activity.setStreamingTitle(streamMeta.getFullTitle());
+							if (streamMeta != null){
+								streamMeta.refreshMeta();
+								activity.setStreamingTitle(streamMeta.getFullTitle());
+							}
 						} catch (IOException e) {
-							
+							activity.setStreamingTitle("");
 						}
 					}
 				});
