@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import android.util.Log;
  
 public class IcyStreamMeta {
  
@@ -185,6 +187,7 @@ public class IcyStreamMeta {
 		Pattern p = Pattern.compile("^([a-zA-Z]+)=\\'([^\\']*)\\'$");
 		Matcher m;
 		for (int i = 0; i < metaParts.length; i++) {
+			Log.i("Data", metaParts[i]);
 			m = p.matcher(metaParts[i]);
 			if (m.find()) {
 				metadata.put((String)m.group(1), (String)m.group(2));

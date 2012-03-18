@@ -12,7 +12,9 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PsyRadioActivity extends Activity {
@@ -36,11 +38,15 @@ public class PsyRadioActivity extends Activity {
 	private String[] statusLabels;
 	private CharSequence[] buttonLabels;
 	private LiveShowPresenter visitor;
+	private Animation rotate_animation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        rotate_animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        
 		visitor = new LiveShowPresenter(this);
 		statusLabels = getResources().getStringArray(
 				R.array.live_show_status_labels);
@@ -85,10 +91,17 @@ public class PsyRadioActivity extends Activity {
 		return service;
 	}
 
-	public void setButtonState(int labelId, boolean enabled) {
-		Button button = (Button) findViewById(R.id.live_show_action_button);
-		button.setText(buttonLabels[labelId]);
-		button.setEnabled(enabled);
+	public void setButtonState(int labelId, boolean enabled, int state) {
+		//Button button = (Button) findViewById(R.id.live_show_action_button);
+		//button.setText(buttonLabels[labelId]);
+		//button.setEnabled(enabled);
+		
+		if (state == 1){
+			ImageView spinner = (ImageView) findViewById(R.id.live_action_button);
+			spinner.startAnimation(rotate_animation);
+		} else {
+			rotate_animation.cancel();
+		}
 	}
 
 	public void setStatusLabel(int labelId) {

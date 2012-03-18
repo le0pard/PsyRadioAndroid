@@ -3,17 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+
   
-  <TextView
-      android:id="@+id/playback_state_label"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:textSize="20sp"
-      android:textStyle="bold"
-      android:typeface="sans"
-      android:textScaleX="1.1"
-      android:gravity="center_horizontal" />
-  
+  <LinearLayout android:id="@+id/live_show_action_button" style="@style/dashboard_button_container" android:onClick="onButtonPressed">
+	    <LinearLayout style="@style/dashboard_image_container">
+	        <ImageView android:id="@+id/live_action_button" android:contentDescription="@string/app_name" style="@style/dashboard_item_image" android:src="@drawable/ic_launcher" />
+	    </LinearLayout>
+	    <TextView android:id="@+id/playback_state_label" style="@style/dashboard_item_label" />
+	</LinearLayout>
+	
   <TextView
       android:id="@+id/live_title_label"
       android:layout_width="fill_parent"
@@ -35,11 +33,5 @@
     android:textSize="12sp"
     android:textColor="#606060"
     android:gravity="center" />
-    
-  <Button
-    android:id="@+id/live_show_action_button"
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:onClick="onButtonPressed" />
 
 </LinearLayout>

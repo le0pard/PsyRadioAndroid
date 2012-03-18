@@ -46,14 +46,14 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 		isActive = true;
 		activity.setStatusLabel(labelStringId);
 		activity.showHelpText(isHelpTextVisible);
-		activity.setButtonState(0, buttonEnabled);
+		activity.setButtonState(0, buttonEnabled, labelStringId);
 	}
 
 	private void beInactiveState() {
 		isActive = false;
 		activity.setStatusLabel(0);
 		activity.showHelpText(false);
-		activity.setButtonState(1, true);
+		activity.setButtonState(1, true, 0);
 	}
 
 	@Override
