@@ -18,9 +18,4 @@
 	    <item>Broadcasting</item>
 	    <item>Stopping</item>
 	  </string-array>
-	  <string-array
-	    name="live_show_button_labels">
-	    <item>Stop</item>
-	    <item>Play</item>
-	  </string-array>
 </resources>

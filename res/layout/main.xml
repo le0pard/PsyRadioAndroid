@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    style="@style/dashboard" >
 
   
-  <LinearLayout android:id="@+id/live_show_action_button" style="@style/dashboard_button_container" android:onClick="onButtonPressed">
-	    <LinearLayout style="@style/dashboard_image_container">
+  <LinearLayout android:id="@+id/live_show_action_button" style="@style/dashboard_button_container">
+	    <LinearLayout android:id="@+id/live_action_shitcher" style="@style/dashboard_image_container">
 	        <ImageView android:id="@+id/live_action_button" android:contentDescription="@string/app_name" style="@style/dashboard_item_image" android:src="@drawable/ic_launcher" />
 	    </LinearLayout>
 	    <TextView android:id="@+id/playback_state_label" style="@style/dashboard_item_label" />
@@ -33,5 +31,19 @@
     android:textSize="12sp"
     android:textColor="#606060"
     android:gravity="center" />
+  
+  
+  
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/seekbar_box_style">
+      <SeekBar android:id="@+id/seekbar_volume"
+               android:max="100"
+               android:progress="0"
+               android:secondaryProgress="0"
+               android:progressDrawable="@drawable/seekbar_progress"
+               android:thumb="@drawable/seek_thumb"
+               style="@style/seekbar_style" />
+    </LinearLayout>
 
 </LinearLayout>

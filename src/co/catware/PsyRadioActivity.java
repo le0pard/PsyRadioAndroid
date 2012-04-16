@@ -9,15 +9,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class PsyRadioActivity extends Activity {
+public class PsyRadioActivity extends Activity implements OnClickListener, SeekBar.OnSeekBarChangeListener {
 	
 	protected LiveShowService service;
 
@@ -36,9 +40,10 @@ public class PsyRadioActivity extends Activity {
 		}
 	};
 	private String[] statusLabels;
-	private CharSequence[] buttonLabels;
 	private LiveShowPresenter visitor;
 	private Animation rotate_animation;
+	private SeekBar volumeSeekBar;
+	private AudioManager audioManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +55,19 @@ public class PsyRadioActivity extends Activity {
 		visitor = new LiveShowPresenter(this);
 		statusLabels = getResources().getStringArray(
 				R.array.live_show_status_labels);
-		buttonLabels = getResources().getStringArray(
-				R.array.live_show_button_labels);
+		
+		View mainButton = findViewById(R.id.live_action_shitcher);
+		mainButton.setOnClickListener(this);
+		
+		audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+	    int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+	    int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+		volumeSeekBar = (SeekBar) findViewById(R.id.seekbar_volume);
+		volumeSeekBar.setOnSeekBarChangeListener(this);
+		volumeSeekBar.setMax(maxVolume);
+		volumeSeekBar.setProgress(curVolume);
+		
+		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 
 	@Override
@@ -90,17 +106,61 @@ public class PsyRadioActivity extends Activity {
 	public LiveShowService getService() {
 		return service;
 	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+     if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) { 
+           int index = volumeSeekBar.getProgress(); 
+           volumeSeekBar.setProgress(index + 1); 
+           return true; 
+     } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+           int index = volumeSeekBar.getProgress(); 
+           volumeSeekBar.setProgress(index - 1); 
+           return true; 
+     }
+     return super.onKeyDown(keyCode, event); 
+    }
+	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.live_action_shitcher:
+				this.onButtonPressed(v);
+				break;
+		}
+	}
+	
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
 
 	public void setButtonState(int labelId, boolean enabled, int state) {
 		//Button button = (Button) findViewById(R.id.live_show_action_button);
 		//button.setText(buttonLabels[labelId]);
 		//button.setEnabled(enabled);
-		
-		if (state == 1){
-			ImageView spinner = (ImageView) findViewById(R.id.live_action_button);
-			spinner.startAnimation(rotate_animation);
-		} else {
-			rotate_animation.cancel();
+		switch (state){
+			case 1:
+				ImageView spinner = (ImageView) findViewById(R.id.live_action_button);
+				spinner.startAnimation(rotate_animation);
+				break;
+			default:
+				rotate_animation.cancel();
 		}
 	}
 

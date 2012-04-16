@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- parents -->
+    <style name="wrap_all_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- styles -->
+    <style name="dashboard">
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/main_background</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
     <style name="dashboard_button_container">
         <item name="android:orientation">vertical</item>
-        <!-- <item name="android:background">@drawable/dashboard_button_bg</item> -->
-        <item name="android:focusable">true</item>
         <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_marginTop">0dip</item>
+        <item name="android:layout_marginBottom">0dip</item>
+    </style>
+    <style name="dashboard_image_container">
+        <item name="android:background">@drawable/dashboard_button_bg</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:selectable">true</item>
         <item name="android:clickable">true</item>
     </style>
-    <style name="dashboard_image_container">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="dashboard_item_image" parent="@style/wrap_all_content">
     </style>
-    <style name="dashboard_item_image">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="dashboard_item_label"  parent="@style/wrap_all_content">
     </style>
-    <style name="dashboard_item_label">
-        <item name="android:layout_width">wrap_content</item>
+    
+    <style name="seekbar_box_style">
+        <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/main_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">6dip</item>
+        <item name="android:paddingBottom">0dip</item>
+        <item name="android:paddingLeft">10dip</item>
+        <item name="android:paddingRight">10dip</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+    <style name="seekbar_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 </resources>
