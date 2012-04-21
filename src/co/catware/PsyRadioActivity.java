@@ -13,6 +13,9 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -98,7 +101,7 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 			if (service.streamMetaTitle != null){
 				setStreamingTitle(service.streamMetaTitle);
 			} else {
-				setStreamingTitle("");
+				setStreamingTitle(getString(R.string.live_show_not_start));
 			}
 		}
 	}
@@ -138,28 +141,30 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
+		// nothing
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
+		// nothing
 	}
 	
 	
 
 	public void setButtonState(int labelId, boolean enabled, int state) {
-		//Button button = (Button) findViewById(R.id.live_show_action_button);
-		//button.setText(buttonLabels[labelId]);
-		//button.setEnabled(enabled);
+		ImageView button = (ImageView) findViewById(R.id.live_action_button);
 		switch (state){
 			case 1:
-				ImageView spinner = (ImageView) findViewById(R.id.live_action_button);
-				spinner.startAnimation(rotate_animation);
+			case 2:
+				button.setImageResource(R.drawable.loadingbutton);
+				button.startAnimation(rotate_animation);
+				break;
+			case 3:
+				button.setImageResource(R.drawable.pausebutton);
+				rotate_animation.cancel();
 				break;
 			default:
+				button.setImageResource(R.drawable.playbutton);
 				rotate_animation.cancel();
 		}
 	}
@@ -179,4 +184,25 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 		int visibility = (visible) ? View.VISIBLE : View.INVISIBLE;
 		view.setVisibility(visibility);
 	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+      super.onCreateOptionsMenu(menu);
+      MenuInflater inflater = getMenuInflater();
+      inflater.inflate(R.menu.menu, menu);
+      return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+      switch (item.getItemId()) {
+      	case R.id.about_button:
+      	 startActivity(new Intent(this, About.class));
+      	 return true;
+      	default:
+	     return super.onOptionsItemSelected(item);
+      }
+	}
+	
 }
