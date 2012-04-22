@@ -22,7 +22,7 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_weight">2.0</item>
         <item name="android:layout_marginTop">10dip</item>
         <item name="android:layout_marginBottom">0dip</item>
     </style>
@@ -34,10 +34,16 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginTop">0dip</item>
+        <item name="android:layout_marginBottom">0dip</item>
+        <item name="android:layout_marginLeft">10dip</item>
+        <item name="android:layout_marginRight">10dip</item>
     </style>
     
     <style name="dashboard_logo" parent="@style/dashboard_logo_land">
         <item name="android:layout_marginTop">10dip</item>
+        <item name="android:layout_marginBottom">0dip</item>
+        <item name="android:layout_marginLeft">0dip</item>
+        <item name="android:layout_marginRight">0dip</item>
     </style>
     
     <style name="dashboard_button_container">
