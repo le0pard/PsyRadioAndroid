@@ -20,6 +20,10 @@
 	  </string-array>
 	  
 	  <string name="about_label">About</string>
+	  <string name="settings_label">Streaming quality</string>
+	  <string name="q64k">64K</string>
+	  <string name="q128k">128K</string>
+	  <string name="q256k">256K</string>
 	  <string name="about_text">
 <![CDATA[Psychic Radio Station (http://psyradio.com.ua)\n
 Psychedelic Online Station.\n\n

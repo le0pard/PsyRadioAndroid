@@ -1,4 +1,4 @@
-package co.catware.live;
+package co.catware.PsyRadio.live;
 
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;

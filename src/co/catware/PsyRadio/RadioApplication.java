@@ -1,9 +1,9 @@
-package co.catware;
+package co.catware.PsyRadio;
 
 import android.app.Application;
 import android.media.MediaPlayer;
 
-public class RadiotApplication extends Application {
+public class RadioApplication extends Application {
 	private MediaPlayer mediaPlayer;
 
 	@Override

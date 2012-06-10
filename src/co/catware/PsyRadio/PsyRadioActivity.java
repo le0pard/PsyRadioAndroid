@@ -1,7 +1,8 @@
-package co.catware;
+package co.catware.PsyRadio;
 
-import co.catware.live.LiveShowPresenter;
-import co.catware.live.LiveShowService;
+import co.catware.PsyRadio.live.LiveShowPresenter;
+import co.catware.PsyRadio.live.LiveShowService;
+import co.catware.PsyRadio.live.LiveShowState;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -9,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -25,7 +28,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class PsyRadioActivity extends Activity implements OnClickListener, SeekBar.OnSeekBarChangeListener {
-	
+	public final static String PREFS_NAME = "settings";
+	public final static String QUALITY_KEY = "setting_quality";
 	protected LiveShowService service;
 
 	protected BroadcastReceiver onPlaybackState = new BroadcastReceiver() {
@@ -47,11 +51,15 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 	private Animation rotate_animation;
 	private SeekBar volumeSeekBar;
 	private AudioManager audioManager;
+	private SharedPreferences settings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        settings = getSharedPreferences(PREFS_NAME, 0);
+        LiveShowState.setLiveShowUrl("http://stream.psyradio.com.ua:8000/" + getQuality());
         
         rotate_animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         
@@ -148,8 +156,6 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		// nothing
 	}
-	
-	
 
 	public void setButtonState(int labelId, boolean enabled, int state) {
 		ImageView button = (ImageView) findViewById(R.id.live_action_button);
@@ -197,12 +203,46 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
+      	case R.id.settings_button:
+      	 String quality = getQuality();
+      	 if (quality.equalsIgnoreCase("256kbps")){
+      		 item.getSubMenu().findItem(R.id.q256k).setChecked(true);
+      	 } else if (quality.equalsIgnoreCase("128kbps")){
+      		item.getSubMenu().findItem(R.id.q128k).setChecked(true);
+      	 } else {
+      		item.getSubMenu().findItem(R.id.q64k).setChecked(true);
+      	 }
+       	 return true;
+      	case R.id.q64k:
+      	 setQuality("64kbps");
+      	 return true;
+      	case R.id.q128k:
+      	 setQuality("128kbps");
+         return true;
+      	case R.id.q256k:
+         setQuality("256kbps");
+         return true;
       	case R.id.about_button:
       	 startActivity(new Intent(this, About.class));
       	 return true;
       	default:
 	     return super.onOptionsItemSelected(item);
       }
+	}
+	
+	private String getQuality(){
+		String quality = settings.getString(QUALITY_KEY, "256kbps");
+        return quality;
+	}
+	
+	private void setQuality(String quality){
+        Editor editor = settings.edit();
+        editor.putString(QUALITY_KEY, quality);
+        editor.commit();
+        if (visitor.isActive()){
+        	visitor.switchPlaybackState(service.getCurrentState());
+        }
+        LiveShowState.setLiveShowUrl("http://stream.psyradio.com.ua:8000/" + getQuality());
 	}
 	
 }

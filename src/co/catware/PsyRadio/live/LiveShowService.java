@@ -1,14 +1,14 @@
-package co.catware.live;
+package co.catware.PsyRadio.live;
 
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import co.catware.R;
-import co.catware.RadiotApplication;
-import co.catware.PsyRadioActivity;
-import co.catware.live.LiveShowState.*;
-
+import co.catware.PsyRadio.PsyRadioActivity;
+import co.catware.PsyRadio.R;
+import co.catware.PsyRadio.live.LiveShowState;
+import co.catware.PsyRadio.live.LiveShowState.*;
+import co.catware.PsyRadio.RadioApplication;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -91,7 +91,7 @@ public class LiveShowService extends Service implements ILiveShowService {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		MediaPlayer player = ((RadiotApplication) getApplication()).getMediaPlayer();
+		MediaPlayer player = ((RadioApplication) getApplication()).getMediaPlayer();
 		currentState = new LiveShowState.Idle(player, this);
 		statusLabels = getResources().getStringArray(
 				R.array.live_show_notification_labels);

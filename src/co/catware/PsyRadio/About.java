@@ -1,4 +1,4 @@
-package co.catware;
+package co.catware.PsyRadio;
 
 import android.app.Activity;
 import android.os.Bundle;

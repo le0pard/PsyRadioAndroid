@@ -1,4 +1,4 @@
-package co.catware.live;
+package co.catware.PsyRadio.live;
 
 import java.io.IOException;
 import java.io.InputStream;

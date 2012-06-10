@@ -1,8 +1,8 @@
-package co.catware.live;
+package co.catware.PsyRadio.live;
 
 import android.util.Log;
-import co.catware.PsyRadioActivity;
-import co.catware.live.LiveShowState.*;
+import co.catware.PsyRadio.PsyRadioActivity;
+import co.catware.PsyRadio.live.LiveShowState.*;
 
 public class LiveShowPresenter implements ILiveShowVisitor {
 
@@ -39,6 +39,10 @@ public class LiveShowPresenter implements ILiveShowVisitor {
 		} else {
 			state.startPlayback();
 		}
+	}
+	
+	public boolean isActive(){
+		return isActive;
 	}
 
 	private void beActiveState(LiveShowState state, int labelStringId,
