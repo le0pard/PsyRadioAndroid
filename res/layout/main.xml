@@ -22,9 +22,7 @@
     style="@style/dashboard_error_style"
     android:text="@string/live_show_waiting_hint" />
   
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    style="@style/seekbar_box_style">
+  <LinearLayout android:orientation="vertical" style="@style/seekbar_box_style">
       <SeekBar android:id="@+id/seekbar_volume"
                android:max="100"
                android:progress="0"

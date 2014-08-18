@@ -3,6 +3,7 @@ package co.catware.PsyRadio;
 import co.catware.PsyRadio.live.LiveShowPresenter;
 import co.catware.PsyRadio.live.LiveShowService;
 import co.catware.PsyRadio.live.LiveShowState;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -27,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class PsyRadioActivity extends Activity implements OnClickListener, SeekBar.OnSeekBarChangeListener {
 	public final static String PREFS_NAME = "settings";
 	public final static String QUALITY_KEY = "setting_quality";
@@ -77,6 +79,7 @@ public class PsyRadioActivity extends Activity implements OnClickListener, SeekB
 		volumeSeekBar.setOnSeekBarChangeListener(this);
 		volumeSeekBar.setMax(maxVolume);
 		volumeSeekBar.setProgress(curVolume);
+		volumeSeekBar.setKeyProgressIncrement(1);
 		
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}

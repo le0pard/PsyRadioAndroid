@@ -9,7 +9,6 @@ import co.catware.PsyRadio.R;
 import co.catware.PsyRadio.live.LiveShowState;
 import co.catware.PsyRadio.live.LiveShowState.*;
 import co.catware.PsyRadio.RadioApplication;
-
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -227,7 +226,7 @@ public class LiveShowService extends Service implements ILiveShowService {
 		foregrounder.stopForeground();
 	}
 
-	private Notification createNotification(String statusMessage) {
+	private Notification createNotification(String statusMessage) {		
 		Notification note = new Notification(R.drawable.ic_notification_live,
 				null, System.currentTimeMillis());
 		PendingIntent i = PendingIntent.getActivity(getApplication(), 0,
@@ -303,12 +302,12 @@ abstract class Foregrounder {
 
 			public void stopForeground() {
 				nm.cancel(notificationId);
-				service.setForeground(false);
+				service.stopForeground(false);
 			}
 
 			@Override
 			public void startForeground(int id, Notification notification) {
-				service.setForeground(true);
+				service.stopForeground(true);
 				nm.notify(id, notification);
 				this.notificationId = id;
 			}
