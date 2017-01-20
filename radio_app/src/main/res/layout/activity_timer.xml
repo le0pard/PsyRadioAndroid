@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_size"
+        android:paddingTop="@dimen/tool_bar_margin">
+
+        <TextView
+            android:id="@+id/at_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@string/fontFamily_roboto_light"
+            android:text="@string/turn_off_music"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
+
+
+        <ImageButton
+            android:id="@+id/at_back_image_button"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="right|center_vertical"
+            android:transitionName="icon_timer"
+            android:background="@drawable/oval_pink"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_arrow_back_right"/>
+    </FrameLayout>
+
+
+
+        <FrameLayout
+            android:id="@+id/at_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+
+
+
+</LinearLayout>

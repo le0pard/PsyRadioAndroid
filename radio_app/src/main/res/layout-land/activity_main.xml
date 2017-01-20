@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_size"
+        android:paddingTop="@dimen/tool_bar_margin">
+        <ImageButton
+            android:id="@+id/am_timer_image_button"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="left|center_vertical"
+            android:background="@drawable/oval_pink"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_timer_small"/>
+
+        <ImageButton
+            android:id="@+id/am_settings_image_button"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/oval_pink"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_settings_small"/>
+    </FrameLayout>
+    <TextView
+        android:id="@+id/am_time_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:maxLength="5"
+        android:text="00:00"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_psy"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/am_play_image_button"
+                android:layout_width="@dimen/oval_button_size"
+                android:layout_height="@dimen/oval_button_size"
+                android:layout_gravity="center|top"
+                android:background="@drawable/oval_blue"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:scaleType="center"
+                android:src="@drawable/ic_play"/>
+
+            <TextView
+                android:id="@+id/am_status_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp"
+                tools:ignore="HardcodedText"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+

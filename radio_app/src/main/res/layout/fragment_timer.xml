@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ft_time_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:transitionName="timer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@string/fontFamily_roboto_light"
+                android:text="@string/music_turned_off_in"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/ft_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:maxLength="5"
+                android:singleLine="true"
+                android:text="00:00"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="75sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ft_stop_image_button"
+        android:layout_width="@dimen/oval_button_size"
+        android:layout_height="@dimen/oval_button_size"
+        android:layout_gravity="center|top"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/oval_blue"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:scaleType="center"
+        android:src="@drawable/ic_stop"/>
+
+</LinearLayout>

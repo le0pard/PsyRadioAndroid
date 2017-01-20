@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.catware.psyradio.view.KeyboardView
+                android:id="@+id/st_keyboard_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.catware.psyradio.view.TimerView
+                android:id="@+id/st_timer_view"
+                android:paddingBottom="10dp"
+                android:transitionName="timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageButton
+                android:id="@+id/st_start_image_button"
+                android:layout_width="@dimen/oval_button_size"
+                android:layout_height="@dimen/oval_button_size"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/oval_blue"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:scaleType="center"
+                android:src="@drawable/ic_timer_white"/>
+        </FrameLayout>
+    </LinearLayout>
+
+

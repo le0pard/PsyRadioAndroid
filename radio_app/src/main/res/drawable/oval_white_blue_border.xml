@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android"
+                       android:shape="oval">
+                    <solid android:color="@color/colorPrimary"/>
+                    <size android:width="@dimen/oval_button_size"
+                          android:height="@dimen/oval_button_size"/>
+                </shape>
+            </item>
+
+            <item android:bottom="1dp"
+                  android:left="1dp"
+                  android:right="1dp"
+                  android:top="1dp">
+                <shape xmlns:android="http://schemas.android.com/apk/res/android"
+                       android:shape="oval">
+                    <solid android:color="@color/colorWhite"/>
+                    <size android:width="@dimen/oval_button_size"
+                          android:height="@dimen/oval_button_size"/>
+                </shape>
+            </item>
+
+
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android"
+                       android:shape="oval">
+                    <solid android:color="@color/colorPrimary"/>
+                    <size android:width="@dimen/oval_button_size"
+                          android:height="@dimen/oval_button_size"/>
+                </shape>
+            </item>
+
+            <item android:bottom="1dp"
+                  android:left="1dp"
+                  android:right="1dp"
+                  android:top="1dp">
+                <shape xmlns:android="http://schemas.android.com/apk/res/android"
+                       android:shape="oval">
+                    <solid android:color="@color/colorGrey"/>
+                    <size android:width="@dimen/oval_button_size"
+                          android:height="@dimen/oval_button_size"/>
+                </shape>
+            </item>
+
+
+        </layer-list>
+    </item>
+
+
+</selector>

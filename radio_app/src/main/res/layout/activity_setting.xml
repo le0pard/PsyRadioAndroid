@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_size"
+        android:paddingTop="@dimen/tool_bar_margin">
+
+
+        <ImageButton
+            android:id="@+id/as_back_image_button"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="left|center_vertical"
+            android:background="@drawable/oval_pink"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_arrow_back_left"
+            android:transitionName="icon_timer"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <RadioButton
+            android:id="@+id/as_low_stream_radio_button"
+            android:layout_width="@dimen/oval_button_size"
+            android:layout_height="@dimen/oval_button_size"
+            android:layout_gravity="center|left"
+            android:background="@drawable/setting_radio_button"
+            android:button="@android:color/transparent"
+            android:fontFamily="@string/fontFamily_roboto_light"
+            android:gravity="center"
+            android:maxLength="4"
+            android:text="64k"
+            android:textAllCaps="true"
+            android:textColor="@color/color_setting_radio_button"
+            android:textSize="24dp"/>
+
+        <RadioButton
+            android:id="@+id/as_medium_stream_radio_button"
+            android:layout_width="@dimen/oval_button_size"
+            android:layout_height="@dimen/oval_button_size"
+            android:layout_gravity="center"
+            android:background="@drawable/setting_radio_button"
+            android:button="@android:color/transparent"
+            android:fontFamily="@string/fontFamily_roboto_light"
+            android:gravity="center"
+            android:maxLength="4"
+            android:text="128k"
+            android:textAllCaps="true"
+            android:textColor="@color/color_setting_radio_button"
+            android:textSize="24dp"/>
+
+        <RadioButton
+            android:id="@+id/as_hight_stream_radio_button"
+            android:layout_width="@dimen/oval_button_size"
+            android:layout_height="@dimen/oval_button_size"
+            android:layout_gravity="center|right"
+            android:background="@drawable/setting_radio_button"
+            android:button="@android:color/transparent"
+            android:fontFamily="@string/fontFamily_roboto_light"
+            android:gravity="center"
+            android:maxLength="4"
+            android:text="256k"
+            android:textAllCaps="true"
+            android:textColor="@color/color_setting_radio_button"
+            android:textSize="24dp"/>
+    </FrameLayout>
+</LinearLayout>
