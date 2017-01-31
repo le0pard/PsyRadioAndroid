@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">PsyRadio</string>
+    <string name="action_settings">Settings</string>
+    <string name="connecting_with_points">Connecting...</string>
+    <string name="connecting">Connecting</string>
+    <string name="resuming_with_points">Resuming...</string>
+    <string name="pause">Pause</string>
+    <string name="track_name">Track name</string>
+    <string name="internet_connection_fail">Check internet connection</string>
+    <string name="hours_mark">h</string>
+    <string name="minuts_mark">m</string>
+    <string name="music_turned_off_in">Music will be turned off in</string>
+    <string name="turn_off_music">Turn off the music in</string>
+
+
+    <!--added on API 16 (JB - 4.1)-->
+    <string name="fontFamily_roboto_regular">sans-serif</string>
+    <string name="fontFamily_roboto_light">sans-serif-light</string>
+    <string name="fontFamily_roboto_condensed">sans-serif-condensed</string>
+
+    <!--added on API 17 (JBMR1 - 4.2)-->
+    <string name="fontFamily_roboto_thin">sans-serif-thin</string>
+
+    <!--added on Lollipop (LL- 5.0)-->
+    <string name="fontFamily_roboto_medium">sans-serif-medium</string>
+    <string name="fontFamily_roboto_black">sans-serif-black</string>
+    <string name="fontFamily_roboto_condensed_light">sans-serif-condensed-light</string>
+
+</resources>

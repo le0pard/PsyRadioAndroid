@@ -1,0 +1,15 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_margin_half">8dp</dimen>
+    <dimen name="tool_bar_size">56dp</dimen>
+    <dimen name="icon_size">56dp</dimen>
+    <dimen name="tool_bar_margin">0dp</dimen>
+    <dimen name="oval_button_size">80dp</dimen>
+    <dimen name="keyboard_button_size">90dp</dimen>
+    <dimen name="notification_size">64dp</dimen>
+
+    <dimen name="timer_value_size">55sp</dimen>
+    <dimen name="timer_mark_size">20sp</dimen>
+</resources>
