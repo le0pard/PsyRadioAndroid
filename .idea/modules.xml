@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/PsyRadio.iml" filepath="$PROJECT_DIR$/PsyRadio.iml" />
       <module fileurl="file://$PROJECT_DIR$/PsyRadioAndroid.iml" filepath="$PROJECT_DIR$/PsyRadioAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/radio_app/radio_app.iml" filepath="$PROJECT_DIR$/radio_app/radio_app.iml" />
     </modules>
